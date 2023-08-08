@@ -3,25 +3,20 @@ import pandas as pd
 import streamlit as st
 from skimage.io import imread
 
+
 def binarize_im(im):
-    """画像を白黒に変更する
+    """画像をグレー変換する
 
     Args:
         im (行列): 加工前の画像
 
     Returns:
-        行列: 2値化処理を行った白黒画像
+        行列: グレー変換を行った画像
     """
-    alpha = 128
-    
-    for y in range(im.shape[0]):
-        for x in range(im.shape[1]):
-            if (alpha <= ((im[x, y, 0] + im[x, y, 1] + im[x, y, 2]) / 3)):
-                im[x, y, :] = 255
-            else:
-                im[x, y, :] = 0
-    
+    im = im.convert('L')
+
     return im
+
 
 def histgram_show(im):
     """画素のRGB値をヒストグラムで表示
@@ -38,7 +33,6 @@ def histgram_show(im):
     df_hist = pd.DataFrame(hist, columns=['R', 'G', 'B'])
     st.bar_chart(df_hist)
 
-
     # choose one color
     color = st.radio(
         "choose R, G, or B",
@@ -53,6 +47,7 @@ def histgram_show(im):
         df_hist = pd.DataFrame(hist_blue)
         st.bar_chart(df_hist)
 
+
 # download the image
 img_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mount_Fuji_from_Mount_Aino.jpg/640px-Mount_Fuji_from_Mount_Aino.jpg'
 
@@ -65,6 +60,6 @@ histgram_show(im)
 im_2 = im
 im_2 = binarize_im(im_2)
 
-st.image(im_2, caption='2値化処理後（閾値:128）',
+st.image(im_2, caption='image gray_convert',
          use_column_width=True)
 histgram_show(im_2)
