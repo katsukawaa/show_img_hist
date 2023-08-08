@@ -51,9 +51,9 @@ def histgram_show(im):
 st.title("画像のグレー変換")
 
 # download the image
-img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
+#img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
 
-im = Image.open(img_url)
+im = Image.open("kanemura.jpg")
 
 st.image(im, caption='image from hinatazaka46',
          use_column_width=True)
