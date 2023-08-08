@@ -48,12 +48,12 @@ def histgram_show(im):
         st.bar_chart(df_hist)
 
 
-st.title("画像のグレー変換")
+st.title("画像のRGB分類")
 
 # download the image
-#img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
+img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
 
-im = Image.open("kanemura.jpg")
+im = imread(img_url)
 
 st.image(im, caption='image from hinatazaka46',
          use_column_width=True)
