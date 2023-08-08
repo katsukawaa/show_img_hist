@@ -4,20 +4,6 @@ import streamlit as st
 from skimage.io import imread
 from PIL import Image
 
-def gray_im(im):
-    """画像をグレー変換する
-
-    Args:
-        im (行列): 加工前の画像
-
-    Returns:
-        行列: グレー変換を行った画像
-    """
-    im = im.convert('L')
-
-    return im
-
-
 def histgram_show(im):
     """画素のRGB値をヒストグラムで表示
 
@@ -48,19 +34,23 @@ def histgram_show(im):
         st.bar_chart(df_hist)
 
 
-st.title("画像のRGB分類")
-
+st.title("金村美玖のアーティスト写真")
 # download the image
-img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
+img_url_3 = 'https://cdn.hinatazaka46.com/images/14/259/9a7d8fd77ebc318caac9973badaed/600_600_102400.jpg'
+im_3 = imread(img_url_3)
+img_url_4 = 'https://cdn.hinatazaka46.com/images/14/2e0/25e0f9a005106467a6b24ecbe5eec/600_600_102400.jpg'
+im_4 = imread(img_url_4)
+img_url_10 = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
+im_10 = imread(img_url_10)
 
-im = imread(img_url)
-
-st.image(im, caption='image from hinatazaka46',
-         use_column_width=True)
-histgram_show(im)
-
-im_2 = gray_im(im)
-
-st.image(im_2, caption='image gray_convert',
-         use_column_width=True)
-histgram_show(im_2)
+# main
+number = st.radio("choose single",('3', '4', '10'))
+if number == '3':
+    st.image(im_3, caption='3rd single - hinatazaka46',use_column_width=True)
+    histgram_show(im_3)
+if number == '4':
+    st.image(im_4, caption='4th single - hinatazaka46',use_column_width=True)
+    histgram_show(im_4)
+if number == '10':
+    st.image(im_10, caption='10th single - hinatazaka46',use_column_width=True)
+    histgram_show(im_10)
