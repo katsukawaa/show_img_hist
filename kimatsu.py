@@ -16,7 +16,7 @@ def binarize_im(im):
     
     for y in range(im.shape[0]):
         for x in range(im.shape[1]):
-            if (alpha <= (im[x, y, 0] + im[x, y, 1] + im[x, y, 2]) / 3):
+            if (alpha <= ((im[x, y, 0] + im[x, y, 1] + im[x, y, 2]) / 3)):
                 im[x, y, :] = 255
             else:
                 im[x, y, :] = 0
