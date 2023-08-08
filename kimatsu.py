@@ -49,11 +49,11 @@ def histgram_show(im):
 
 
 # download the image
-img_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Mount_Fuji_from_Mount_Aino.jpg/640px-Mount_Fuji_from_Mount_Aino.jpg'
+img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
 
 im = imread(img_url)
 
-st.image(im, caption='image from wikimedia commons',
+st.image(im, caption='image from hinatazaka46',
          use_column_width=True)
 histgram_show(im)
 
