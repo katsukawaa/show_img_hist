@@ -2,9 +2,9 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from skimage.io import imread
+from PIL import Image
 
-
-def binarize_im(im):
+def gray_im(im):
     """画像をグレー変換する
 
     Args:
@@ -48,17 +48,18 @@ def histgram_show(im):
         st.bar_chart(df_hist)
 
 
+st.title("画像のグレー変換")
+
 # download the image
 img_url = 'https://cdn.hinatazaka46.com/images/14/c37/b38a196f2a8709c417eebdf13d8fe/1000_1000_102400.jpg'
 
-im = imread(img_url)
+im = Image.open(img_url)
 
 st.image(im, caption='image from hinatazaka46',
          use_column_width=True)
 histgram_show(im)
 
-im_2 = im
-im_2 = binarize_im(im_2)
+im_2 = gray_im(im)
 
 st.image(im_2, caption='image gray_convert',
          use_column_width=True)
