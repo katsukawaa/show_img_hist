@@ -7,16 +7,16 @@ def binarize_im(im):
     """画像を白黒に変更する
 
     Args:
-        im (行列): 加工前の
+        im (行列): 加工前の画像
 
     Returns:
         行列: 2値化処理を行った白黒画像
     """
     alpha = 128
-
+    
     for y in range(im.shape[0]):
         for x in range(im.shape[1]):
-            if ((alpha <= im[x, y, 0] + im[x, y, 1] + im[x, y, 2]) / 3):
+            if (alpha <= (im[x, y, 0] + im[x, y, 1] + im[x, y, 2]) / 3):
                 im[x, y, :] = 255
             else:
                 im[x, y, :] = 0
@@ -24,6 +24,11 @@ def binarize_im(im):
     return im
 
 def histgram_show(im):
+    """画素のRGB値をヒストグラムで表示
+
+    Args:
+        im (行列): データとなる画像
+    """
     # show histgram of all colors
     hist_red, _ = np.histogram(im[:, :, 0], bins=64)
     hist_green, _ = np.histogram(im[:, :, 1], bins=64)
